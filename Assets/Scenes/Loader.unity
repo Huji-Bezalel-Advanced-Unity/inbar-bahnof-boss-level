@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loaderUI: {fileID: 819283642}
+  playerPrefab: {fileID: 945864825684564812, guid: 2f440ac57e9d4414e94dc4b02d9ef110, type: 3}
 --- !u!4 &821193656
 Transform:
   m_ObjectHideFlags: 0
