@@ -13,10 +13,10 @@ namespace Loaders{
     public class GameLoader : MonoBehaviour
     {
         [SerializeField] private LoaderUI loaderUI;
-        [SerializeField] private PlayerMovement playerPrefab;
+        [SerializeField] private PlayerController playerPrefab;
         [SerializeField] private Boss bossPrefab;
         
-        private PlayerMovement player;
+        private PlayerController player;
         private Boss boss;
         
         private void Start()

@@ -9,9 +9,9 @@ namespace Characters.Enemies
         [SerializeField] protected float speed = 3f;
         [SerializeField] protected float minDistanceToPlayer = 5f;
         
-        protected PlayerMovement player;
+        protected PlayerController player;
         
-        public virtual void Init(PlayerMovement playerGiven)
+        public virtual void Init(PlayerController playerGiven)
         {
             player = playerGiven;
         }

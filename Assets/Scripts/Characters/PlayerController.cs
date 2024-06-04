@@ -3,11 +3,27 @@ using UnityEngine;
 
 namespace Characters
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float speed = 10f;
+        [SerializeField] private HealthController healthController;
+        
+        private void Awake()
+        {
+            healthController.Init(OnDeath);
+        }
+
+        private void OnDeath()
+        {
+            
+        }
 
         private void Update()
+        {
+            TryMove();
+        }
+
+        private void TryMove()
         {
             var horizontal = Input.GetAxis("Horizontal");
             var vertical = Input.GetAxis("Vertical");
