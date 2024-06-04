@@ -1,19 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Charachters;
+using Characters;
+using Characters.Enemies;
 using Managers;
 using Loaders;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Loaders{
     public class GameLoader : MonoBehaviour
     {
         [SerializeField] private LoaderUI loaderUI;
         [SerializeField] private PlayerMovement playerPrefab;
+        [SerializeField] private Boss bossPrefab;
         
         private PlayerMovement player;
+        private Boss boss;
         
         private void Start()
         {
@@ -55,8 +59,24 @@ namespace Loaders{
             loaderUI.AddProgress(20);
 
             LoadPlayer();
+            LoadBoss();
             
             OnLoadComplete();
+        }
+
+        private void LoadBoss()
+        {
+            if (bossPrefab == null)
+            {
+                Debug.LogError("Boss prefab is not assigned in the inspector.");
+                return;
+            }
+            Vector2 randomPosition = Random.insideUnitCircle * 4;
+            Vector2 position = (Vector2)Camera.main.transform.position + randomPosition;
+
+            boss = Instantiate(bossPrefab, position, Quaternion.identity);
+            boss.Init(player);
+            loaderUI.AddProgress(10);
         }
 
         private void LoadPlayer()
@@ -67,7 +87,7 @@ namespace Loaders{
                 return;
             }
             player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-            loaderUI.AddProgress(20);
+            loaderUI.AddProgress(10);
         }
 
         private void OnLoadComplete()
