@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,6 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   healthController: {fileID: 996573291142694247}
+  flowerPrefab: {fileID: 4764158473423476758, guid: 6420effce7a26064d9c6233c78ad1f3a, type: 3}
+  bossHealth: {fileID: 0}
 --- !u!58 &2835253259220337647
 CircleCollider2D:
   m_ObjectHideFlags: 0

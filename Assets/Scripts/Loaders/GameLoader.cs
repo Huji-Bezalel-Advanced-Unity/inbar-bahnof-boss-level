@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Characters;
 using Characters.Enemies;
+using Characters.Player;
 using Managers;
 using Loaders;
 using UnityEngine;

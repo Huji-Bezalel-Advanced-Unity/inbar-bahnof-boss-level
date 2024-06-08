@@ -1,12 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Characters
+namespace Characters.Player
 {
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float speed = 10f;
         [SerializeField] private HealthController healthController;
+        [SerializeField] private FlowerProjectile flowerPrefab;
+        // [SerializeField] private HealthController bossHealth;
         
         private void Awake()
         {
@@ -21,7 +23,16 @@ namespace Characters
         private void Update()
         {
             TryMove();
-            // TryAttack();
+            TryAttack();
+        }
+
+        private void TryAttack()
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                // var projectile = Instantiate(flowerPrefab, transform.position, Quaternion.identity);
+                // projectile.Init(bossHealth);
+            }
         }
 
         private void TryMove()
