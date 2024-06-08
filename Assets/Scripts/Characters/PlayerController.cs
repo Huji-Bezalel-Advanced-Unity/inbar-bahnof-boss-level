@@ -21,6 +21,7 @@ namespace Characters
         private void Update()
         {
             TryMove();
+            // TryAttack();
         }
 
         private void TryMove()
@@ -30,6 +31,11 @@ namespace Characters
 
             Vector2 movement = new Vector2(horizontal, vertical).normalized;
             transform.Translate(movement * (speed * Time.deltaTime));
+        }
+
+        public HealthController GetHealthControl()
+        {
+            return healthController;
         }
     }
 }

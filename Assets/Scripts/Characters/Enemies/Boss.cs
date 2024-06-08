@@ -1,11 +1,33 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Characters.Enemies
 {
     public class Boss : BasicEnemy
     {
+        [SerializeField] private AIAttacker attacker;
+        [SerializeField] private PoisonProjectile projectilePrefab;
+
+        private HealthController healthController;
+
+        private void Start()
+        {
+            healthController = GetComponent<HealthController>();
+            if (healthController != null)
+            {
+                healthController.Init(OnDeath);
+            }
+
+            if (projectilePrefab != null && attacker != null)   
+            {
+                attacker.Init(projectilePrefab, transform);
+            }
+        }
+
         public override void TryShoot()
         {
+            attacker.TryShoot(player.GetHealthControl());
+            
             base.TryShoot();
         }
 
