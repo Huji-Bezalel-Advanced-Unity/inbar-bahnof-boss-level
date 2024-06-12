@@ -19,6 +19,7 @@ namespace Loaders{
         
         private PlayerController player;
         private Boss boss;
+        private Camera mainCamera;
         
         private void Start()
         {
@@ -62,6 +63,14 @@ namespace Loaders{
             LoadPlayer();
             LoadBoss();
             
+            mainCamera = Camera.main;
+            var cameraScript = mainCamera.GetComponent<SmoothOrthographicCameraFollow>();
+
+            if (cameraScript != null)
+            {
+                cameraScript.SetTarget(player.transform);
+            }
+
             OnLoadComplete();
         }
 
