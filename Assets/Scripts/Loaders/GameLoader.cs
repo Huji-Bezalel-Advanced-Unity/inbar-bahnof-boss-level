@@ -58,7 +58,7 @@ namespace Loaders{
         {
             SceneManager.sceneLoaded -= OnMainSceneLoaded;
             loaderUI.AddProgress(20);
-
+            
             LoadPlayer();
             LoadBoss();
             
@@ -77,6 +77,7 @@ namespace Loaders{
 
             boss = Instantiate(bossPrefab, position, Quaternion.identity);
             boss.Init(player);
+            player.setBossTarget(boss.GetHealthControl());
             loaderUI.AddProgress(10);
         }
 

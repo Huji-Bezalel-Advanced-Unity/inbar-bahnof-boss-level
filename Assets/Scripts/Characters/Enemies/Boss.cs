@@ -10,7 +10,7 @@ namespace Characters.Enemies
 
         private HealthController healthController;
 
-        private void Start()
+        private void Awake()
         {
             healthController = GetComponent<HealthController>();
             if (healthController != null)
@@ -22,6 +22,11 @@ namespace Characters.Enemies
             {
                 attacker.Init(projectilePrefab, transform);
             }
+        }
+        
+        public HealthController GetHealthControl()
+        {
+            return healthController;
         }
 
         public override void TryShoot()

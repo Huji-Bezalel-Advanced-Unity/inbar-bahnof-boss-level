@@ -8,7 +8,8 @@ namespace Characters.Player
         [SerializeField] private float speed = 10f;
         [SerializeField] private HealthController healthController;
         [SerializeField] private FlowerProjectile flowerPrefab;
-        // [SerializeField] private HealthController bossHealth;
+        
+        private HealthController bossHealth;
         
         private void Awake()
         {
@@ -30,8 +31,8 @@ namespace Characters.Player
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                // var projectile = Instantiate(flowerPrefab, transform.position, Quaternion.identity);
-                // projectile.Init(bossHealth);
+                var projectile = Instantiate(flowerPrefab, transform.position, Quaternion.identity);
+                projectile.Init(bossHealth);
             }
         }
 
@@ -47,6 +48,11 @@ namespace Characters.Player
         public HealthController GetHealthControl()
         {
             return healthController;
+        }
+
+        public void setBossTarget(HealthController boss)
+        {
+            bossHealth = boss;
         }
     }
 }

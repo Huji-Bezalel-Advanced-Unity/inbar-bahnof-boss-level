@@ -27,6 +27,20 @@ namespace Characters
         
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
+            if (IsTarget(other))
+            {
+                HandleHit();
+            }
+        }
+        
+        protected bool IsTarget(Collider2D other)
+        {
+            return other.gameObject == projectileTarget.gameObject;
+        }
+
+        protected virtual void HandleHit()
+        {
+            projectileTarget.TakeDamage(damage);
             StopCoroutine(Die());
             Destroy(gameObject);
         }
