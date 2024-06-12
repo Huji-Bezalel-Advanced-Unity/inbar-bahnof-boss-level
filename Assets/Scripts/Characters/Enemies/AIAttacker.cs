@@ -13,12 +13,13 @@ namespace Characters.Enemies
         private Projectile projectilePrefab;
         private Transform managerPosition;
         private DateTime lastAttackTime = DateTime.UtcNow;
-        
+        private HealthController projectileShooter;
 
-        public void Init(Projectile projectileType, Transform position)
+        public void Init(Projectile projectileType, Transform position, HealthController shooter)
         {
             projectilePrefab = projectileType;
             managerPosition = position;
+            projectileShooter = shooter;
         }
         
         public void TryShoot(HealthController target)
@@ -33,7 +34,7 @@ namespace Characters.Enemies
         {
             lastAttackTime = DateTime.UtcNow;
             var projectile = Instantiate(projectilePrefab, managerPosition.position, Quaternion.identity);
-            projectile.Init(target);
+            projectile.Init(target, projectileShooter);
         }
     }
 }

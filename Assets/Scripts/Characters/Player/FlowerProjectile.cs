@@ -10,9 +10,9 @@ namespace Characters.Player
     {
         private Vector3 direction;
 
-        public override void Init(HealthController target)
+        public override void Init(HealthController target, HealthController shooter)    
         {
-            base.Init(target);
+            base.Init(target, shooter);
             direction = (projectileTarget.transform.position - transform.position).normalized;
         }
 

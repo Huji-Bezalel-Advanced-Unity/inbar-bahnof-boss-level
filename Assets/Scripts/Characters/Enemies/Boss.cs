@@ -20,7 +20,7 @@ namespace Characters.Enemies
 
             if (projectilePrefab != null && attacker != null)   
             {
-                attacker.Init(projectilePrefab, transform);
+                attacker.Init(projectilePrefab, transform, healthController);
             }
         }
         

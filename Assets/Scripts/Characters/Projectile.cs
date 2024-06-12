@@ -8,14 +8,16 @@ namespace Characters
     public class Projectile : MonoBehaviour
     {
         [SerializeField] protected int damage = 5;
-        [SerializeField] protected float speed = 15f;
+        [SerializeField] protected float speed = 10f;
         [SerializeField] protected float deathTime = 2f;
         
         protected HealthController projectileTarget;
+        protected HealthController projectileShooter;
         
-        public virtual void Init(HealthController target)
+        public virtual void Init(HealthController target, HealthController shooter)
         {
             projectileTarget = target;
+            projectileShooter = shooter;
             StartCoroutine(Die());
         }
         
@@ -35,7 +37,7 @@ namespace Characters
         
         protected bool IsTarget(Collider2D other)
         {
-            return other.gameObject == projectileTarget.gameObject;
+            return other.gameObject != projectileShooter.gameObject;
         }
 
         protected virtual void HandleHit()

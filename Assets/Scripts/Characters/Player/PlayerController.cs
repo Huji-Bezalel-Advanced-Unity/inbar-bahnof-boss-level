@@ -32,7 +32,7 @@ namespace Characters.Player
             if (Input.GetButtonDown("Fire1"))
             {
                 var projectile = Instantiate(flowerPrefab, transform.position, Quaternion.identity);
-                projectile.Init(bossHealth);
+                projectile.Init(bossHealth, healthController);
             }
         }
 
