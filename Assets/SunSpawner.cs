@@ -18,8 +18,8 @@ public class SunSpawner : MonoBehaviour
     {
         while (true)
         {
-            SpawnSun();
             yield return new WaitForSeconds(spawnInterval);
+            SpawnSun();
         }
     }
 
