@@ -7,26 +7,26 @@ namespace Loaders
     {
         [SerializeField] private Image loaderFG;
 
-        private int curProgress;
+        protected int curProgress;
         private int totalProgress;
 
-        public void Init(int total)
+        public virtual void Init(int total)
         {
             this.totalProgress = total;
             curProgress = 0;
             UpdateUI();
         }
 
-        public void AddProgress(int progress)
+        public virtual void AddProgress(int progress)
         {
             curProgress += progress;
             UpdateUI();
         }
         
-        private void UpdateUI()
+        protected void UpdateUI()
         {
-            float loadPrecent = curProgress / totalProgress;
-            loaderFG.fillAmount = loadPrecent;
+            float loadPercent = (float)curProgress / totalProgress;
+            loaderFG.fillAmount = loadPercent;
         }
     }
 }

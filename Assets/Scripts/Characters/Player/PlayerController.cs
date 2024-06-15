@@ -5,14 +5,18 @@ namespace Characters.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        private const float ENERGY_THREASHHOLD = 0.3f;
+        
         [SerializeField] private float cooldown = 0.5f;
         [SerializeField] private HealthController healthController;
         [SerializeField] private FlowerProjectile flowerPrefab;
         [SerializeField] private float speed = 5f;
+        [SerializeField] private EnergyUI energyUI;
         
         private HealthController bossHealth;
         private DateTime lastAttackTime = DateTime.UtcNow;
         private float energyLevel = 1;
+        private float energyToUpdate = 0;
         
         private void Awake()
         {
@@ -28,14 +32,25 @@ namespace Characters.Player
         {
             TryMove();
             TryAttack();
-            UpdateEnery();
+            RemoveEnergy(0.00005f);
         }
 
-        private void UpdateEnery()
+        private void RemoveEnergy(float toRemove)    
         {
-            if (energyLevel > 0.05f)
+            if (energyLevel - toRemove >= ENERGY_THREASHHOLD)
             {
-                energyLevel -= 0.0001f;
+                energyLevel -= toRemove;
+            }
+            else
+            {
+                energyLevel = ENERGY_THREASHHOLD;
+            }
+
+            energyToUpdate += toRemove;
+            if (energyToUpdate >= 0.01f)
+            {
+                energyUI.RemoveProgress(Mathf.RoundToInt(energyToUpdate * 100));
+                energyToUpdate = 0;
             }
         }
 
@@ -56,6 +71,8 @@ namespace Characters.Player
             projectile.Init(bossHealth, healthController);
             
             lastAttackTime = DateTime.UtcNow;
+
+            RemoveEnergy(0.1f);
         }
 
         private void TryMove()
@@ -72,21 +89,28 @@ namespace Characters.Player
             return healthController;
         }
 
+        public void SetEnergyUI(EnergyUI energy)
+        {
+            energyUI = energy;
+        }
+
         public void setBossTarget(HealthController boss)
         {
             bossHealth = boss;
         }
 
-        public void AddEnergy()
+        public void AddEnergy(float toAdd)
         {
-            if ((energyLevel + 0.3f) < 1)
+            if ((energyLevel + toAdd) < 1)
             {
-                energyLevel += 0.3f;
+                energyLevel += toAdd;
             }
             else
             {
                 energyLevel = 1;
             }
+
+            if (energyUI != null) energyUI.AddProgress(Mathf.RoundToInt(toAdd * 100));
         }
     }
 }

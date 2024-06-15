@@ -4,29 +4,32 @@ using System.Collections.Generic;
 using Characters.Player;
 using UnityEngine;
 
-public class SunController : MonoBehaviour
+namespace Characters
 {
-    private const float LIVE_DURATION = 4f;
-
-    private void Start()
+    public class SunController : MonoBehaviour
     {
-        StartCoroutine(Die());
-    }
+        private const float LIVE_DURATION = 4f;
 
-    private IEnumerator Die()
-    {
-        yield return new WaitForSeconds(LIVE_DURATION);
-        Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        private void Start()
         {
-            PlayerController player = other.GetComponent<PlayerController>();
-            player.AddEnergy();
-            StopCoroutine(Die());
+            StartCoroutine(Die());
+        }
+
+        private IEnumerator Die()
+        {
+            yield return new WaitForSeconds(LIVE_DURATION);
             Destroy(gameObject);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                PlayerController player = other.GetComponent<PlayerController>();
+                player.AddEnergy(0.3f);
+                StopCoroutine(Die());
+                Destroy(gameObject);
+            }
         }
     }
 }

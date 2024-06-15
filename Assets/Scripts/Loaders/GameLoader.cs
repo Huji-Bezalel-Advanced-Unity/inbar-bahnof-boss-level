@@ -71,6 +71,13 @@ namespace Loaders{
                 cameraScript.SetTarget(player.transform);
             }
 
+            EnergyUI energyUI = FindObjectOfType<EnergyUI>();
+            if (energyUI != null)
+            {
+                energyUI.SetEnergyInPlayer(player);
+                energyUI.Init(100);
+            }
+
             OnLoadComplete();
         }
 
