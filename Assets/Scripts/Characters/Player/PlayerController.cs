@@ -5,11 +5,14 @@ namespace Characters.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private float speed = 10f;
+        [SerializeField] private float cooldown = 0.5f;
         [SerializeField] private HealthController healthController;
         [SerializeField] private FlowerProjectile flowerPrefab;
+        [SerializeField] private float speed = 5f;
         
         private HealthController bossHealth;
+        private DateTime lastAttackTime = DateTime.UtcNow;
+        private float energyLevel = 1;
         
         private void Awake()
         {
@@ -25,15 +28,34 @@ namespace Characters.Player
         {
             TryMove();
             TryAttack();
+            UpdateEnery();
+        }
+
+        private void UpdateEnery()
+        {
+            if (energyLevel > 0.05f)
+            {
+                energyLevel -= 0.0001f;
+            }
         }
 
         private void TryAttack()
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                var projectile = Instantiate(flowerPrefab, transform.position, Quaternion.identity);
-                projectile.Init(bossHealth, healthController);
+                var timePassed = DateTime.UtcNow - lastAttackTime;
+                var isTimePassed = timePassed >= TimeSpan.FromSeconds(cooldown);
+                
+                if (isTimePassed) Shoot();
             }
+        }
+
+        private void Shoot()
+        {
+            var projectile = Instantiate(flowerPrefab, transform.position, Quaternion.identity);
+            projectile.Init(bossHealth, healthController);
+            
+            lastAttackTime = DateTime.UtcNow;
         }
 
         private void TryMove()
@@ -42,7 +64,7 @@ namespace Characters.Player
             var vertical = Input.GetAxis("Vertical");
 
             Vector2 movement = new Vector2(horizontal, vertical).normalized;
-            transform.Translate(movement * (speed * Time.deltaTime));
+            transform.Translate(movement * (energyLevel * speed * Time.deltaTime));
         }
 
         public HealthController GetHealthControl()
@@ -53,6 +75,18 @@ namespace Characters.Player
         public void setBossTarget(HealthController boss)
         {
             bossHealth = boss;
+        }
+
+        public void AddEnergy()
+        {
+            if ((energyLevel + 0.3f) < 1)
+            {
+                energyLevel += 0.3f;
+            }
+            else
+            {
+                energyLevel = 1;
+            }
         }
     }
 }
