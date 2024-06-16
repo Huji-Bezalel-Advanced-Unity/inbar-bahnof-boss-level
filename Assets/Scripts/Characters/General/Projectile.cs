@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Characters.General;
 using UnityEngine;
 
-namespace Characters
+namespace Characters.General
 {
     public class Projectile : MonoBehaviour
     {
