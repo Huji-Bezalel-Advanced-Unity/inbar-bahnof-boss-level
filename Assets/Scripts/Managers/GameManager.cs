@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using Characters.Enemies;
 using Characters.Player;
 using Loaders;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private SunSpawner _sunSpawner;
 
     private PlayerController _playerController;
     private Boss _boss;
@@ -39,6 +41,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        _sunSpawner.StopSpawn();
+        _playerController.GameOver();
+        _boss.GameOver();
         gameOverCanvas.SetActive(true);
     }
 
@@ -47,5 +52,6 @@ public class GameManager : MonoBehaviour
         gameOverCanvas.SetActive(false);
         _playerController.Restart();
         _boss.Restart();
+        _sunSpawner.RestartSpawn();
     }
 }

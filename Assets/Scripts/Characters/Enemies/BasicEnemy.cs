@@ -11,6 +11,7 @@ namespace Characters.Enemies
         [SerializeField] protected float minDistanceToPlayer = 5f;
         
         protected PlayerController player;
+        protected bool isEnabled = true;
         
         public virtual void Init(PlayerController playerGiven)
         {
@@ -19,8 +20,19 @@ namespace Characters.Enemies
         
         private void Update()
         {
+            if (!isEnabled) return;
             TryMove();
             TryShoot();
+        }
+        
+        public void GameOver()
+        {
+            isEnabled = false;
+        }
+
+        public virtual void Restart()
+        {
+            isEnabled = true;
         }
 
         public virtual void TryShoot()

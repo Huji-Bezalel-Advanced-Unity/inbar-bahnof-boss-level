@@ -25,8 +25,9 @@ namespace Characters.Enemies
             }
         }
         
-        public void Restart()
+        public override void Restart()
         {
+            base.Restart();
             _healthController.Restart();
         }
         

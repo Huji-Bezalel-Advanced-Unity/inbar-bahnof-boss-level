@@ -58,5 +58,15 @@ namespace Managers
             // Return the world position with the same z-position as the camera's near clip plane
             return new Vector3(randomX, randomY, 0);
         }
+
+        public void StopSpawn()
+        {
+            StopCoroutine(SpawnSunRoutine());
+        }
+
+        public void RestartSpawn()
+        {
+            StartCoroutine(SpawnSunRoutine());
+        }
     }
 }

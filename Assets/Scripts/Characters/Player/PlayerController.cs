@@ -7,6 +7,8 @@ namespace Characters.Player
     public class PlayerController : MonoBehaviour
     {
         private const float ENERGY_THREASHHOLD = 0.3f;
+        private const float EnergyRemoveOnUpdate = 0.00001f;
+        private const float EnergyRemoveOnShoot = 0.05f;
         
         [SerializeField] private float cooldown = 0.5f;
         [SerializeField] private HealthController healthController;
@@ -14,11 +16,11 @@ namespace Characters.Player
         [SerializeField] private float speed = 5f;
         [SerializeField] private EnergyUI energyUI;
         
-        private HealthController bossHealth;
-        private DateTime lastAttackTime = DateTime.UtcNow;
-        private float energyLevel = 1;
-        private float energyToUpdate = 0;
-        private float energyToRemove = 0.00001f;
+        private HealthController _bossHealth;
+        private DateTime _lastAttackTime = DateTime.UtcNow;
+        private float _energyLevel = 1;
+        private float _energyToUpdate = 0;
+        private bool _isEnabled = true;
         
         private void Awake()
         {
@@ -32,27 +34,29 @@ namespace Characters.Player
 
         private void Update()
         {
+            if (!_isEnabled) return;
+            
             TryMove();
             TryAttack();
-            RemoveEnergy(energyToRemove);
+            RemoveEnergy(EnergyRemoveOnUpdate);
         }
 
         private void RemoveEnergy(float toRemove)    
         {
-            if (energyLevel - toRemove >= ENERGY_THREASHHOLD)
+            if (_energyLevel - toRemove >= ENERGY_THREASHHOLD)
             {
-                energyLevel -= toRemove;
+                _energyLevel -= toRemove;
             }
             else
             {
-                energyLevel = ENERGY_THREASHHOLD;
+                _energyLevel = ENERGY_THREASHHOLD;
             }
 
-            energyToUpdate += toRemove;
-            if (energyToUpdate >= 0.01f)
+            _energyToUpdate += toRemove;
+            if (_energyToUpdate >= 0.01f)
             {
-                energyUI.RemoveProgress(Mathf.RoundToInt(energyToUpdate * 100));
-                energyToUpdate = 0;
+                energyUI.RemoveProgress(Mathf.RoundToInt(_energyToUpdate * 100));
+                _energyToUpdate = 0;
             }
         }
 
@@ -60,7 +64,7 @@ namespace Characters.Player
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                var timePassed = DateTime.UtcNow - lastAttackTime;
+                var timePassed = DateTime.UtcNow - _lastAttackTime;
                 var isTimePassed = timePassed >= TimeSpan.FromSeconds(cooldown);
                 
                 if (isTimePassed) Shoot();
@@ -70,11 +74,11 @@ namespace Characters.Player
         private void Shoot()
         {
             var projectile = Instantiate(flowerPrefab, transform.position, Quaternion.identity);
-            projectile.Init(bossHealth, healthController);
+            projectile.Init(_bossHealth, healthController);
             
-            lastAttackTime = DateTime.UtcNow;
+            _lastAttackTime = DateTime.UtcNow;
 
-            RemoveEnergy(0.1f);
+            RemoveEnergy(EnergyRemoveOnShoot);
         }
 
         private void TryMove()
@@ -83,14 +87,20 @@ namespace Characters.Player
             var vertical = Input.GetAxis("Vertical");
 
             Vector2 movement = new Vector2(horizontal, vertical).normalized;
-            transform.Translate(movement * (energyLevel * speed * Time.deltaTime));
+            transform.Translate(movement * (_energyLevel * speed * Time.deltaTime));
         }
 
+        public void GameOver()
+        {
+            _isEnabled = false;
+        }
+        
         public void Restart()
         {
             healthController.Restart();
-            energyLevel = 1;
+            _energyLevel = 1;
             energyUI.AddProgress(100);
+            _isEnabled = true;
         }
 
         public HealthController GetHealthControl()
@@ -105,18 +115,18 @@ namespace Characters.Player
 
         public void setBossTarget(HealthController boss)
         {
-            bossHealth = boss;
+            _bossHealth = boss;
         }
 
         public void AddEnergy(float toAdd)
         {
-            if ((energyLevel + toAdd) < 1)
+            if ((_energyLevel + toAdd) < 1)
             {
-                energyLevel += toAdd;
+                _energyLevel += toAdd;
             }
             else
             {
-                energyLevel = 1;
+                _energyLevel = 1;
             }
 
             if (energyUI != null) energyUI.AddProgress(Mathf.RoundToInt(toAdd * 100));
