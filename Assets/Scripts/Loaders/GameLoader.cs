@@ -63,12 +63,18 @@ namespace Loaders{
             LoadPlayer();
             LoadBoss();
             
+            GameManager manager = FindObjectOfType<GameManager>();
+            manager.Init(player, boss);
+            
             mainCamera = Camera.main;
-            var cameraScript = mainCamera.GetComponent<SmoothOrthographicCameraFollow>();
-
-            if (cameraScript != null)
+            if (mainCamera != null)
             {
-                cameraScript.SetTarget(player.transform);
+                var cameraScript = mainCamera.GetComponent<SmoothOrthographicCameraFollow>();
+
+                if (cameraScript != null)
+                {
+                    cameraScript.SetTarget(player.transform);
+                }
             }
 
             EnergyUI energyUI = FindObjectOfType<EnergyUI>();

@@ -33,6 +33,12 @@ namespace Characters.General
             }
         }
 
+        public void Restart()
+        {
+            curHealth = maxHealth;
+            healthUI.SetHealth(maxHealth);
+        }
+
         private void Die()
         {
             onDeathAction?.Invoke();

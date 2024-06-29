@@ -18,6 +18,7 @@ namespace Characters.Player
         private DateTime lastAttackTime = DateTime.UtcNow;
         private float energyLevel = 1;
         private float energyToUpdate = 0;
+        private float energyToRemove = 0.00001f;
         
         private void Awake()
         {
@@ -26,14 +27,14 @@ namespace Characters.Player
 
         private void OnDeath()
         {
-            
+            GameManager.instance.GameOver();
         }
 
         private void Update()
         {
             TryMove();
             TryAttack();
-            RemoveEnergy(0.00005f);
+            RemoveEnergy(energyToRemove);
         }
 
         private void RemoveEnergy(float toRemove)    
@@ -83,6 +84,13 @@ namespace Characters.Player
 
             Vector2 movement = new Vector2(horizontal, vertical).normalized;
             transform.Translate(movement * (energyLevel * speed * Time.deltaTime));
+        }
+
+        public void Restart()
+        {
+            healthController.Restart();
+            energyLevel = 1;
+            energyUI.AddProgress(100);
         }
 
         public HealthController GetHealthControl()

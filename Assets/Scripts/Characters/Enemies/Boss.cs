@@ -9,25 +9,30 @@ namespace Characters.Enemies
         [SerializeField] private AIAttacker attacker;
         [SerializeField] private PoisonProjectile projectilePrefab;
 
-        private HealthController healthController;
+        private HealthController _healthController;
 
         private void Awake()
         {
-            healthController = GetComponent<HealthController>();
-            if (healthController != null)
+            _healthController = GetComponent<HealthController>();
+            if (_healthController != null)
             {
-                healthController.Init(OnDeath);
+                _healthController.Init(OnDeath);
             }
 
             if (projectilePrefab != null && attacker != null)   
             {
-                attacker.Init(projectilePrefab, transform, healthController);
+                attacker.Init(projectilePrefab, transform, _healthController);
             }
+        }
+        
+        public void Restart()
+        {
+            _healthController.Restart();
         }
         
         public HealthController GetHealthControl()
         {
-            return healthController;
+            return _healthController;
         }
 
         public override void TryShoot()
