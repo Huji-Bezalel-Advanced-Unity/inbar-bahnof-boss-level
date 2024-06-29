@@ -55,8 +55,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _DisolveAmount: 0.09
-    - _DisolveScale: 70
-    - _OutLineThickness: 0
+    - _DisolveScale: 109
+    - _DissolveAmount: 0.132
+    - _OutLineThickness: 0.059
     - _SpirleStrength: 10
     m_Colors:
     - _OutLineColor: {r: 1, g: 0.9267906, b: 0, a: 0}
