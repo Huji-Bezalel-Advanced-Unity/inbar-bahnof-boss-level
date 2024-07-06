@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using Characters.General;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Characters.Enemies
 {
@@ -10,8 +12,10 @@ namespace Characters.Enemies
         [SerializeField] private PoisonProjectile projectilePrefab;
 
         private HealthController _healthController;
+        private int _phase = 1;
+        private NavMeshAgent _agent;
 
-        private void Awake()
+        protected void Awake()
         {
             _healthController = GetComponent<HealthController>();
             if (_healthController != null)
@@ -21,8 +25,12 @@ namespace Characters.Enemies
 
             if (projectilePrefab != null && attacker != null)   
             {
-                attacker.Init(projectilePrefab, transform, _healthController);
+                attacker.Init(projectilePrefab, transform, this);
             }
+
+            _agent = GetComponent<NavMeshAgent>();
+            _agent.updateRotation = false;
+            _agent.updateUpAxis = false;
         }
         
         public override void Restart()
@@ -36,32 +44,56 @@ namespace Characters.Enemies
             return _healthController;
         }
 
-        public override void TryShoot()
+        protected override void TryShoot()
         {
             attacker.TryShoot(player.GetHealthControl());
             
             base.TryShoot();
         }
 
-        public override void TryMove()
+        protected override IEnumerator TryMove()
         {
-            if (IsPlayerInRange()) return;
+            while (_phase == 1)
+            {
+                if (IsPlayerInRange())
+                {
+                    yield return null;
+                }
+                else
+                {
+                    Vector3 playerPos = player.transform.position;
+                    Vector3 direction = (playerPos - transform.position).normalized;
+                    transform.Translate(direction * (speed * Time.deltaTime));
+                }
+            }
+        }
 
-            Vector3 playerPos = player.transform.position;
-            Vector3 direction = (playerPos - transform.position).normalized;
-            transform.Translate(direction * (speed * Time.deltaTime));
-
-            base.TryMove();
+        private IEnumerator MoveSecondPhase()
+        {
+            while (_phase == 2)
+            {
+                _agent.SetDestination(player.transform.position);
+                yield return null;
+            }
         }
 
         public override void OnDeath()
         {
             base.OnDeath();
-        }
-
-        public override void OnHit()
-        {
-            base.OnHit();
+            if (_phase == 1)
+            {
+                Debug.Log("Boss Phase 2!");
+                
+                _healthController.Restart();
+                _phase = 2;
+                StopCoroutine(TryMove());
+                SetShootingDistanceToPlayer(8f);
+                StartCoroutine(MoveSecondPhase());
+            }
+            else
+            {
+                Debug.Log("Boss Died!");
+            }
         }
     }
 }

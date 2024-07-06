@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Characters.General;
 using Characters.Player;
 using UnityEngine;
 
@@ -8,7 +10,8 @@ namespace Characters.Enemies
     public class BasicEnemy : MonoBehaviour
     {
         [SerializeField] protected float speed = 3f;
-        [SerializeField] protected float minDistanceToPlayer = 5f;
+        [SerializeField] protected float minDistanceToPlayer = 3f;
+        [SerializeField] protected float minShootingDistanceToPlayer = 1f;
         
         protected PlayerController player;
         protected bool isEnabled = true;
@@ -17,11 +20,16 @@ namespace Characters.Enemies
         {
             player = playerGiven;
         }
-        
+
+        protected virtual void Start()
+        {
+            StartCoroutine(TryMove());
+        }
+
         private void Update()
         {
             if (!isEnabled) return;
-            TryMove();
+            // TryMove();
             TryShoot();
         }
         
@@ -35,24 +43,29 @@ namespace Characters.Enemies
             isEnabled = true;
         }
 
-        public virtual void TryShoot()
+        protected virtual void TryShoot()
         {
             
         }
 
-        public virtual void TryMove()
+        protected virtual IEnumerator TryMove()
         {
-            
+            yield return null;
         }
 
         public virtual void OnDeath()
         {
             
         }
-        
-        public virtual void OnHit()
+
+        protected void SetShootingDistanceToPlayer(float dis)
         {
-            
+            minShootingDistanceToPlayer = dis;
+        }
+
+        public bool IsPlayerInShootingRange()
+        {
+            return Vector3.Distance(transform.position, player.transform.position) < minShootingDistanceToPlayer;
         }
         
         public virtual bool IsPlayerInRange()
