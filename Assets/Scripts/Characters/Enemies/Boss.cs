@@ -10,6 +10,7 @@ namespace Characters.Enemies
     {
         [SerializeField] private AIAttacker attacker;
         [SerializeField] private PoisonProjectile projectilePrefab;
+        [SerializeField] private float _secondPhaseSpeed = 4f;
 
         private HealthController _healthController;
         private int _phase = 1;
@@ -31,6 +32,7 @@ namespace Characters.Enemies
             _agent = GetComponent<NavMeshAgent>();
             _agent.updateRotation = false;
             _agent.updateUpAxis = false;
+            _agent.speed = _secondPhaseSpeed;
         }
         
         public override void Restart()
@@ -93,6 +95,7 @@ namespace Characters.Enemies
             else
             {
                 Debug.Log("Boss Died!");
+                StopCoroutine(MoveSecondPhase());
             }
         }
     }

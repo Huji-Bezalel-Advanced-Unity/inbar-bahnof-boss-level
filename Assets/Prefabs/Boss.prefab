@@ -108,6 +108,7 @@ MonoBehaviour:
   minShootingDistanceToPlayer: 1
   attacker: {fileID: 8623400002334985352}
   projectilePrefab: {fileID: 7765504671874593997, guid: 32c4d887ef00b3142ad2903cf2718dd1, type: 3}
+  _secondPhaseSpeed: 4
 --- !u!114 &4963380519490425206
 MonoBehaviour:
   m_ObjectHideFlags: 0
