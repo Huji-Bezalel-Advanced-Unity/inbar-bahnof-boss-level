@@ -5,12 +5,14 @@ using Characters.Enemies;
 using Characters.Player;
 using Loaders;
 using Managers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private TextMeshProUGUI _finalText;
     [SerializeField] private SunSpawner _sunSpawner;
 
     private PlayerController _playerController;
@@ -39,12 +41,21 @@ public class GameManager : MonoBehaviour
         _boss = boss;
     }
 
-    public void GameOver()
+    public void GameOver(bool won)
     {
         _sunSpawner.StopSpawn();
         _playerController.GameOver();
         _boss.GameOver();
         gameOverCanvas.SetActive(true);
+
+        if (won)
+        {
+            _finalText.text = "You Won!";
+        }
+        else
+        {
+            _finalText.text = "You Lost!";
+        }
     }
 
     public void RestartGame()

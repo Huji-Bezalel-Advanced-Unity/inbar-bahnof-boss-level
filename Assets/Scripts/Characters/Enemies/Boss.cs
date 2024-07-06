@@ -95,7 +95,9 @@ namespace Characters.Enemies
             else
             {
                 Debug.Log("Boss Died!");
+                _phase = 0;
                 StopCoroutine(MoveSecondPhase());
+                GameManager.instance.GameOver(true);
             }
         }
     }

@@ -10,7 +10,7 @@ namespace Characters.General
         [SerializeField] private int maxHealth = 100;
 
         private HealthUI healthUI;
-        private int curHealth;
+        private float curHealth;
         private Action onDeathAction;
 
         public void Init(Action onDeath = null)
@@ -22,7 +22,7 @@ namespace Characters.General
             healthUI.Init(maxHealth);
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             curHealth -= damage;
             healthUI.SetHealth(curHealth);

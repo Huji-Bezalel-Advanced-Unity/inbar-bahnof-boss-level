@@ -106,6 +106,7 @@ MonoBehaviour:
   flowerPrefab: {fileID: 4764158473423476758, guid: 6420effce7a26064d9c6233c78ad1f3a, type: 3}
   speed: 5
   energyUI: {fileID: 0}
+  bossRange: 10
 --- !u!114 &996573291142694247
 MonoBehaviour:
   m_ObjectHideFlags: 0

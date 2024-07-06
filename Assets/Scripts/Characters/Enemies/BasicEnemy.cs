@@ -29,7 +29,6 @@ namespace Characters.Enemies
         private void Update()
         {
             if (!isEnabled) return;
-            // TryMove();
             TryShoot();
         }
         
@@ -41,6 +40,7 @@ namespace Characters.Enemies
         public virtual void Restart()
         {
             isEnabled = true;
+            StartCoroutine(TryMove());
         }
 
         protected virtual void TryShoot()
