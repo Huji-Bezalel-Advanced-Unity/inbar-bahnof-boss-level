@@ -17,7 +17,6 @@ namespace Characters.Player
         [SerializeField] private FlowerProjectile flowerPrefab;
         [SerializeField] private float speed = 5f;
         [SerializeField] private EnergyUI energyUI;
-        [SerializeField] private float bossRange = 8f; 
         
         private HealthController _bossHealth;
         private DateTime _lastAttackTime = DateTime.UtcNow;
@@ -25,6 +24,7 @@ namespace Characters.Player
         private float _energyToUpdate = 0;
         private bool _isEnabled = true;
         private bool _isTouchingBoss = false;
+        private bool _canMove = true;
         
         private void Awake()
         {
@@ -54,6 +54,7 @@ namespace Characters.Player
             {
                 _bossHealth.TakeDamage(1f);
                 _bossHealth.GetComponent<Boss>().AfterPoke();
+                _canMove = true;
                 _isTouchingBoss = false;
             }
         }
@@ -102,6 +103,8 @@ namespace Characters.Player
 
         private void TryMove()
         {
+            if(!_canMove) return;
+            
             var horizontal = Input.GetAxis("Horizontal");
             var vertical = Input.GetAxis("Vertical");
 
@@ -114,6 +117,7 @@ namespace Characters.Player
             if (other.gameObject.CompareTag("Boss"))
             {
                 healthController.TakeDamage(0.1f);
+                _canMove = false;
                 _isTouchingBoss = true;
             }
         }
@@ -123,6 +127,7 @@ namespace Characters.Player
             if (other.gameObject.CompareTag("Boss"))
             {
                 _isTouchingBoss = false;
+                _canMove = true;
             }
         }
 

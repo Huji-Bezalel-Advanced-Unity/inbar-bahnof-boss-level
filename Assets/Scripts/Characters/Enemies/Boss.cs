@@ -89,7 +89,6 @@ namespace Characters.Enemies
         {
             while (_isMovingFromPlayer)
             {
-                print("in MoveAwayFromBoss");
                 // Calculate the step size based on the speed and frame time
                 float step = _moveSpeedForPoking * Time.deltaTime;
 
@@ -102,7 +101,6 @@ namespace Characters.Enemies
         private IEnumerator StopMovementFromPlayer()
         {
             yield return new WaitForSeconds(0.5f);
-            print("in stop movement");
             _isMovingFromPlayer = false;
             StopCoroutine(MoveAwayFromPlayer());
             isEnabled = true;
