@@ -17,7 +17,7 @@ namespace Characters.Player
         [SerializeField] private FlowerProjectile flowerPrefab;
         [SerializeField] private float speed = 5f;
         [SerializeField] private EnergyUI energyUI;
-        [SerializeField] private float bossRange = 10f; // Set an appropriate range for the boss
+        [SerializeField] private float bossRange = 8f; 
 
         
         private HealthController _bossHealth;
@@ -49,20 +49,6 @@ namespace Characters.Player
             TryAttack();
             TouchBossAttack();
             RemoveEnergy(EnergyRemoveOnUpdate);
-
-            if (_isMovingFromBoss)
-            {
-                MoveAwayFromBoss();
-            }
-        }
-
-        private void MoveAwayFromBoss()
-        {
-            // Calculate the step size based on the speed and frame time
-            float step = _moveSpeedForPoking * Time.deltaTime;
-
-            // Move the player towards the target position
-            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, step);
         }
 
         private void TouchBossAttack()
@@ -72,19 +58,9 @@ namespace Characters.Player
             if (Input.GetButtonDown("Fire2"))
             {
                 _bossHealth.TakeDamage(1f);
-                // Vector3 awayFromBossDirection = (transform.position - _bossHealth.transform.position);
-                // _targetPosition = awayFromBossDirection * bossRange;
-                // _isMovingFromBoss = true;
-                // _isTouchingBoss = false;
-                //
-                // StartCoroutine(StopMovementFromBoss());
+                _bossHealth.GetComponent<Boss>().AfterPoke();
+                _isTouchingBoss = false;
             }
-        }
-
-        private IEnumerator StopMovementFromBoss()
-        {
-            yield return new WaitForSeconds(0.5f);
-            _isMovingFromBoss = false;
         }
 
         private void RemoveEnergy(float toRemove)    

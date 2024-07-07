@@ -10,11 +10,16 @@ namespace Characters.Enemies
     {
         [SerializeField] private AIAttacker attacker;
         [SerializeField] private PoisonProjectile projectilePrefab;
-        [SerializeField] private float _secondPhaseSpeed = 4f;
+        [SerializeField] private float _secondPhaseSpeed = 3.5f;
 
         private HealthController _healthController;
         private int _phase = 1;
         private NavMeshAgent _agent;
+        
+        private Vector3 _targetPosition;
+        private bool _isMovingFromPlayer = false;
+        private float _moveSpeedForPoking = 10f;
+        private float _pokeDistance = 5;
 
         protected void Awake()
         {
@@ -57,7 +62,7 @@ namespace Characters.Enemies
         {
             while (_phase == 1)
             {
-                if (IsPlayerInRange())
+                if (!isEnabled || IsPlayerInRange())
                 {
                     yield return null;
                 }
@@ -74,9 +79,44 @@ namespace Characters.Enemies
         {
             while (_phase == 2)
             {
+                if (!isEnabled) yield return null;
                 _agent.SetDestination(player.transform.position);
                 yield return null;
             }
+        }
+        
+        private IEnumerator MoveAwayFromPlayer()
+        {
+            while (_isMovingFromPlayer)
+            {
+                print("in MoveAwayFromBoss");
+                // Calculate the step size based on the speed and frame time
+                float step = _moveSpeedForPoking * Time.deltaTime;
+
+                // Move the player towards the target position
+                transform.position = Vector3.MoveTowards(transform.position, _targetPosition, step);
+                yield return null;
+            }
+        }
+        
+        private IEnumerator StopMovementFromPlayer()
+        {
+            yield return new WaitForSeconds(0.5f);
+            print("in stop movement");
+            _isMovingFromPlayer = false;
+            StopCoroutine(MoveAwayFromPlayer());
+            isEnabled = true;
+        }
+        
+        public void AfterPoke()
+        {
+            isEnabled = false;
+            Vector2 randomDirection = UnityEngine.Random.insideUnitCircle;
+            _targetPosition = new Vector3(randomDirection.x, randomDirection.y, 0) * _pokeDistance;
+            
+            _isMovingFromPlayer = true;
+            StartCoroutine(MoveAwayFromPlayer());
+            StartCoroutine(StopMovementFromPlayer());
         }
 
         public override void OnDeath()
