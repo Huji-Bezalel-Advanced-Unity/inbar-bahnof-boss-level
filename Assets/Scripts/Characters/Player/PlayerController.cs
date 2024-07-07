@@ -18,7 +18,6 @@ namespace Characters.Player
         [SerializeField] private float speed = 5f;
         [SerializeField] private EnergyUI energyUI;
         [SerializeField] private float bossRange = 8f; 
-
         
         private HealthController _bossHealth;
         private DateTime _lastAttackTime = DateTime.UtcNow;
