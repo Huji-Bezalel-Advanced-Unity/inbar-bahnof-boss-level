@@ -27,10 +27,6 @@ namespace Characters.Player
         private bool _isEnabled = true;
         private bool _isTouchingBoss = false;
         
-        private Vector3 _targetPosition;
-        private bool _isMovingFromBoss = false;
-        private float _moveSpeedForPoking = 10f;
-        
         private void Awake()
         {
             healthController.Init(OnDeath);
