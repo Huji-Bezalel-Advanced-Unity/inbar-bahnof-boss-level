@@ -11,8 +11,8 @@ namespace Characters.General
         [SerializeField] protected int damage = 5;
         [SerializeField] protected float speed = 10f;
         [SerializeField] protected float deathTime = 2f;
-        [SerializeField] protected ParticleSystem _damageParticals;
-        
+
+        protected Vector3 _startPosition;
         protected HealthController projectileTarget;
         protected HealthController projectileShooter;
         
@@ -20,6 +20,7 @@ namespace Characters.General
         {
             projectileTarget = target;
             projectileShooter = shooter;
+            _startPosition = transform.position;
             StartCoroutine(Die());
         }
         
@@ -45,20 +46,13 @@ namespace Characters.General
         protected virtual void HandleHit()
         {
             // Calculate the hit direction
-            Vector3 hitDirection = projectileTarget.transform.position - transform.position;
+            Vector3 hitDirection = projectileTarget.transform.position - _startPosition;
             hitDirection.Normalize(); // Ensure the direction vector is normalized
             
-            projectileTarget.TakeDamage(damage);
-            SpawnParticals(hitDirection);
+            projectileTarget.TakeDamage(damage, hitDirection);
             
             StopCoroutine(Die());
             Destroy(gameObject);
-        }
-
-        protected void SpawnParticals(Vector3 attackDirection)
-        {
-            Quaternion direction = Quaternion.FromToRotation(Vector3.right, attackDirection);
-            Instantiate(_damageParticals, transform.position, direction);
         }
     }
 }

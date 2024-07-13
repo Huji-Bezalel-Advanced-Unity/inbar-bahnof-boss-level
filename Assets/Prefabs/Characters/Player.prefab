@@ -106,7 +106,6 @@ MonoBehaviour:
   flowerPrefab: {fileID: 4764158473423476758, guid: 6420effce7a26064d9c6233c78ad1f3a, type: 3}
   speed: 5
   energyUI: {fileID: 0}
-  bossRange: 5
 --- !u!114 &996573291142694247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  _damageParticals: {fileID: 7436640602841004882, guid: add21cdd0d2c0664d984b0a8737ac2c0, type: 3}
 --- !u!50 &-1630131028501368362
 Rigidbody2D:
   serializedVersion: 4
