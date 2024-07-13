@@ -101,6 +101,7 @@ MonoBehaviour:
   damage: 5
   speed: 5
   deathTime: 2
+  _damageParticals: {fileID: 7436640602841004882, guid: add21cdd0d2c0664d984b0a8737ac2c0, type: 3}
 --- !u!58 &-5612236772540874319
 CircleCollider2D:
   m_ObjectHideFlags: 0
