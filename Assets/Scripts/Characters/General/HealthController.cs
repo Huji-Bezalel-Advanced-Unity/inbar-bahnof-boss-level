@@ -14,6 +14,8 @@ namespace Characters.General
         private float curHealth;
         private Action onDeathAction;
 
+        private float _lastParticalsSpawn = 0f;
+
         public void Init(Action onDeath = null)
         {
             healthUI = FindObjectOfType<HealthUI>();
@@ -51,7 +53,11 @@ namespace Characters.General
         
         private void SpawnParticals(Quaternion attackDirection)
         {
-            Instantiate(_damageParticals, transform.position, attackDirection);
+            if (Time.time -  _lastParticalsSpawn > 0.25f)
+            {
+                Instantiate(_damageParticals, transform.position, attackDirection);
+                _lastParticalsSpawn = Time.time;
+            }
         }
 
         public void Restart()
