@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  _damageParticals: {fileID: 7436640602841004882, guid: add21cdd0d2c0664d984b0a8737ac2c0, type: 3}
+  _damageParticals: {fileID: 7436640602841004882, guid: 418ca0c8ffed5ad4ebf4d2b9830d2d31, type: 3}
 --- !u!50 &-1630131028501368362
 Rigidbody2D:
   serializedVersion: 4

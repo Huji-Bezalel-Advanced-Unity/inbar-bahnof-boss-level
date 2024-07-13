@@ -32,7 +32,9 @@ namespace Characters.General
             {
                 Die();
             }
-            SpawnParticals(hitDirection);
+            
+            Quaternion direction = Quaternion.FromToRotation(Vector3.right, hitDirection);
+            SpawnParticals(direction);
         }
 
         public void TakeDamage(float damage)
@@ -44,12 +46,12 @@ namespace Characters.General
             {
                 Die();
             }
+            SpawnParticals(Quaternion.identity);
         }
         
-        private void SpawnParticals(Vector3 attackDirection)
+        private void SpawnParticals(Quaternion attackDirection)
         {
-            Quaternion direction = Quaternion.FromToRotation(Vector3.right, attackDirection);
-            Instantiate(_damageParticals, transform.position, direction);
+            Instantiate(_damageParticals, transform.position, attackDirection);
         }
 
         public void Restart()

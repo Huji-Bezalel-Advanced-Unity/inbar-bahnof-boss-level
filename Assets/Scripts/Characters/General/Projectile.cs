@@ -24,7 +24,7 @@ namespace Characters.General
             StartCoroutine(Die());
         }
         
-        private IEnumerator Die()
+        protected IEnumerator Die()
         {
             yield return new WaitForSeconds(deathTime);
             Destroy(gameObject);
@@ -46,10 +46,8 @@ namespace Characters.General
         protected virtual void HandleHit()
         {
             // Calculate the hit direction
-            Vector3 hitDirection = projectileTarget.transform.position - _startPosition;
-            hitDirection.Normalize(); // Ensure the direction vector is normalized
-            
-            projectileTarget.TakeDamage(damage, hitDirection);
+            Vector3 hitDirection = (projectileTarget.transform.position - _startPosition).normalized;
+            projectileTarget.TakeDamage(damage, new Vector3(hitDirection.x, hitDirection.y, 0));
             
             StopCoroutine(Die());
             Destroy(gameObject);

@@ -44,6 +44,11 @@ namespace Characters.Enemies
         {
             base.Restart();
             _healthController.Restart();
+
+            _phase = 1;
+            
+            SetShootingDistanceToPlayer(1f);
+            StartCoroutine(TryMove());
         }
         
         public HealthController GetHealthControl()
@@ -135,6 +140,8 @@ namespace Characters.Enemies
                 Debug.Log("Boss Died!");
                 _phase = 0;
                 StopCoroutine(MoveSecondPhase());
+                _agent.isStopped = true;
+                _agent.ResetPath();
                 GameManager.instance.GameOver(true);
             }
         }

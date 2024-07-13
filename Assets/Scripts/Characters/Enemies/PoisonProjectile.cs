@@ -20,5 +20,13 @@ namespace Characters.Enemies
             var direction = (playerPos - transform.position).normalized;
             transform.Translate(direction * (speed * Time.deltaTime));
         }
+
+        protected override void HandleHit()
+        {
+            projectileTarget.TakeDamage(damage);
+            
+            StopCoroutine(Die());
+            Destroy(gameObject);
+        }
     }
 }
