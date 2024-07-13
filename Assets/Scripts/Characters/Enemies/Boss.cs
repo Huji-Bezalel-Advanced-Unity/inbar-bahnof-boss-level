@@ -138,8 +138,11 @@ namespace Characters.Enemies
             else
             {
                 Debug.Log("Boss Died!");
+                AfterPoke();
+                
                 _phase = 0;
                 StopCoroutine(MoveSecondPhase());
+                
                 _agent.isStopped = true;
                 _agent.ResetPath();
                 GameManager.instance.GameOver(true);
