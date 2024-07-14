@@ -32,9 +32,14 @@ namespace Characters.General
         
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
-            if (IsTarget(other))
+            if (IsTheWantedTarget(other))
             {
                 HandleHit();
+            }
+            else if(IsTarget(other))
+            {
+                StopCoroutine(Die());
+                Destroy(gameObject);
             }
         }
         
@@ -51,6 +56,11 @@ namespace Characters.General
             
             StopCoroutine(Die());
             Destroy(gameObject);
+        }
+        
+        protected bool IsTheWantedTarget(Collider2D other)
+        {
+            return other.gameObject == projectileTarget.gameObject;
         }
     }
 }

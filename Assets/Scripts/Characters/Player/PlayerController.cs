@@ -8,9 +8,9 @@ namespace Characters.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        private const float ENERGY_THREASHHOLD = 0.3f;
+        private const float ENERGY_THREASHHOLD = 0.35f;
         private const float EnergyRemoveOnUpdate = 0.00001f;
-        private const float EnergyRemoveOnShoot = 0.05f;
+        private const float EnergyRemoveOnShoot = 0.03f;
         
         [SerializeField] private float cooldown = 0.5f;
         [SerializeField] private HealthController healthController;
