@@ -7,6 +7,7 @@ using Loaders;
 using Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private TextMeshProUGUI _finalText;
     [SerializeField] private SunSpawner _sunSpawner;
+    [SerializeField] private GameObject _firstButtonChosen;
 
     private PlayerController _playerController;
     private Boss _boss;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
         _playerController.GameOver();
         _boss.GameOver();
         gameOverCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(_firstButtonChosen);
 
         if (won)
         {

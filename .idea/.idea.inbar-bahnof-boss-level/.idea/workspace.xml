@@ -14,7 +14,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/inbar/Documents/EdvacedUnity/inbar-bahnof-boss-level/Assets/Prefabs/Boss.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Enemies/AIAttacker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Enemies/PoisonProjectile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Player/EnergyUI.cs" root0="FORCE_HIGHLIGHTING" />
@@ -23,6 +22,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmoothOrthographicCameraFollow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.10/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Gaming Lab/gaming-lab-2024-jam-2-team-7/Assets/Scripts/Dog/DogController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Gaming Lab/gaming-lab-2024-jam-2-team-7/Assets/Scripts/General/CameraShake.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Gaming Lab/gaming-lab-2024-jam-2-team-7/Assets/Scripts/obstacles/KillObs.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Gaming Lab/gaming-lab-2024-jam-2-team-7/Assets/Scripts/obstacles/ObstacleBehavior.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Gaming Lab/gaming-lab-2024-jam-2-team-7/Assets/Scripts/obstacles/obsMove.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -115,6 +119,7 @@
       <workItem from="1719664793778" duration="2045000" />
       <workItem from="1720264915704" duration="12772000" />
       <workItem from="1720361473584" duration="655000" />
+      <workItem from="1720854751878" duration="9306000" />
     </task>
     <servers />
   </component>
