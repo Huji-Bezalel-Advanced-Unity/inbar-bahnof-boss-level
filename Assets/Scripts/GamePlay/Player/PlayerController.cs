@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
-using Characters.Enemies;
+using GamePlay.Enemies;
 using Characters.General;
 using UnityEngine;
+using GamePlay.Projectiles;
 
-namespace Characters.Player
+namespace  GamePlay.Player
 {
     public class PlayerController : MonoBehaviour
     {

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Characters.General;
 using UnityEngine;
 using UnityEngine.Serialization;
+using GamePlay.Projectiles;
 
-namespace Characters.Enemies
+namespace GamePlay.Enemies
 {
     public class AIAttacker : MonoBehaviour
     {

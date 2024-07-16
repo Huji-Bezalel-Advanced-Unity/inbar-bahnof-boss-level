@@ -5,28 +5,31 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class UIstartManager : MonoBehaviour
+namespace Managers
 {
-    [SerializeField] private GameObject _canvasFirst;
-    
-    void Start()
+    public class UIstartManager : MonoBehaviour
     {
-        EventSystem.current.SetSelectedGameObject(_canvasFirst);
-    }
-    
-    public void OnStartButtonClick()
-    {
-        SceneManager.LoadScene("Loader");
-    }
-    
-    public void OnExitButtonClick()
-    {
-        #if UNITY_EDITOR
-                // If running in the Unity Editor, stop playing
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
-                // If running as a built game, quit the application
-                Application.Quit();
-        #endif
+        [SerializeField] private GameObject _canvasFirst;
+
+        void Start()
+        {
+            EventSystem.current.SetSelectedGameObject(_canvasFirst);
+        }
+
+        public void OnStartButtonClick()
+        {
+            SceneManager.LoadScene("Loader");
+        }
+
+        public void OnExitButtonClick()
+        {
+            #if UNITY_EDITOR
+                        // If running in the Unity Editor, stop playing
+                        UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                            // If running as a built game, quit the application
+                            Application.Quit();
+            #endif
+        }
     }
 }

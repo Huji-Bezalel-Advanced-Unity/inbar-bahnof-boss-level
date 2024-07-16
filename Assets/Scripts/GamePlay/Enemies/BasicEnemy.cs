@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Characters.General;
-using Characters.Player;
+using GamePlay.Player;
 using UnityEngine;
 
-namespace Characters.Enemies
+namespace GamePlay.Enemies
 {
     public class BasicEnemy : MonoBehaviour
     {

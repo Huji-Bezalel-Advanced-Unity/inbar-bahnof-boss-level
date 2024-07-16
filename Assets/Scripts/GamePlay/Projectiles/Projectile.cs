@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Characters.General;
 using UnityEngine;
 
-namespace Characters.General
+namespace GamePlay.Projectiles
 {
     public class Projectile : MonoBehaviour
     {
@@ -36,14 +36,14 @@ namespace Characters.General
             {
                 HandleHit();
             }
-            else if(IsTarget(other))
+            else if(IsNotTheShooter(other))
             {
                 StopCoroutine(Die());
                 Destroy(gameObject);
             }
         }
         
-        protected bool IsTarget(Collider2D other)
+        protected bool IsNotTheShooter(Collider2D other)
         {
             return other.gameObject != projectileShooter.gameObject;
         }

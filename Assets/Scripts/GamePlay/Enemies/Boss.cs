@@ -3,8 +3,9 @@ using System.Collections;
 using Characters.General;
 using UnityEngine;
 using UnityEngine.AI;
+using GamePlay.Projectiles;
 
-namespace Characters.Enemies
+namespace GamePlay.Enemies
 {
     public class Boss : BasicEnemy
     {

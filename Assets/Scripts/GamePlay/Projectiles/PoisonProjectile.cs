@@ -5,7 +5,7 @@ using Characters;
 using Characters.General;
 using UnityEngine;
 
-namespace Characters.Enemies
+namespace GamePlay.Projectiles
 {
     public class PoisonProjectile : Projectile
     {

@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Characters.Enemies;
-using Characters.Player;
+using GamePlay.Enemies;
+using GamePlay.Player;
 using Loaders;
 using Managers;
 using TMPro;

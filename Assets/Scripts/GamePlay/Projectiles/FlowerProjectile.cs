@@ -5,7 +5,7 @@ using Characters.General;
 using UnityEngine;
 
 
-namespace Characters.Player
+namespace GamePlay.Projectiles
 {
     public class FlowerProjectile : Projectile
     {
