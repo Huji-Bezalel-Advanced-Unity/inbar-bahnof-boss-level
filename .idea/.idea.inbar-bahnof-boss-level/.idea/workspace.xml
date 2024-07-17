@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f0583cc0-42b9-4574-9c18-9f564e993dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.inbar-bahnof-boss-level/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.inbar-bahnof-boss-level/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particals.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particals/BossAttacteParticals.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particals/BossAttacteParticals.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particals/PlayersAttacteParticals.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particals/PlayersAttacteParticals.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Characters/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Characters/Boss.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlay/Enemies/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlay/Enemies/Boss.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlay/Projectiles/PoisonProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlay/Projectiles/PoisonProjectile.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +125,8 @@
       <workItem from="1720854751878" duration="9306000" />
       <workItem from="1721069601150" duration="683000" />
       <workItem from="1721116230910" duration="2471000" />
-      <workItem from="1721243542126" duration="343000" />
+      <workItem from="1721243542126" duration="1057000" />
+      <workItem from="1721251273247" duration="379000" />
     </task>
     <servers />
   </component>

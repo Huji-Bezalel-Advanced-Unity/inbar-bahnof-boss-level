@@ -9,6 +9,12 @@ namespace GamePlay.Projectiles
 {
     public class PoisonProjectile : Projectile
     {
+        public override void Init(HealthController target, HealthController shooter)
+        {
+            base.Init(target, shooter);
+            damage = 7;
+        }
+
         private void Update()
         {
             MoveToPlayer();
