@@ -12,6 +12,7 @@ namespace GamePlay.Enemies
         [SerializeField] private AIAttacker attacker;
         [SerializeField] private PoisonProjectile projectilePrefab;
         [SerializeField] private float _secondPhaseSpeed = 3.5f;
+        [SerializeField] private ParticleSystem _dieExpload;
 
         private HealthController _healthController;
         private int _phase = 1;
@@ -126,6 +127,7 @@ namespace GamePlay.Enemies
         public override void OnDeath()
         {
             base.OnDeath();
+            Instantiate(_dieExpload, transform.position, Quaternion.identity);
             if (_phase == 1)
             {
                 Debug.Log("Boss Phase 2!");
