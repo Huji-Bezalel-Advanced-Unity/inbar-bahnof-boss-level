@@ -68,4 +68,15 @@ public class GameManager : MonoBehaviour
         _boss.Restart();
         _sunSpawner.RestartSpawn();
     }
+    
+    public void OnExitButtonClick()
+    {
+        #if UNITY_EDITOR
+                // If running in the Unity Editor, stop playing
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                // If running as a built game, quit the application
+                Application.Quit();
+        #endif
+    }
 }
