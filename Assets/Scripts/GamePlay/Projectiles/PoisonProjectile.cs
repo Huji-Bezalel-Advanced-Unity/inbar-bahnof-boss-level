@@ -30,7 +30,7 @@ namespace GamePlay.Projectiles
         protected override void HandleHit()
         {
             projectileTarget.TakeDamage(damage);
-            
+
             StopCoroutine(Die());
             Destroy(gameObject);
         }
