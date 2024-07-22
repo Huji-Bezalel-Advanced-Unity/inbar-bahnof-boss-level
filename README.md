@@ -12,6 +12,9 @@
 
 ## Planning
 
+### diagram
+[Boss Diagram.pdf](https://github.com/user-attachments/files/16339097/Boss.Diagram.pdf)
+
 ### Story
 We are flowers that grow in the garden, humans want to pick us. The boss battle serves as a confrontation between the flowers and the human who seeks to harvest them. This highlights the theme of nature versus human intervention, with the player fighting to protect their home and fellow flowers from being picked.
 
@@ -60,8 +63,3 @@ The boss's movements and attacks become more aggressive as the battle progresses
 
 ## Art
 - **Assets:** Flowers, plants, water sources/drops, sunlight, garden tools, poison, and the human hand.
-
-## diagram
-[Boss Diagram.pdf](https://github.com/user-attachments/files/16339097/Boss.Diagram.pdf)
-
-
