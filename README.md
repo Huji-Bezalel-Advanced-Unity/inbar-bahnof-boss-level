@@ -1,6 +1,6 @@
 # Inbar Bahnof - Boss Level
 
-### Links
+## Links
 - **Gameplay Video:** [Watch here](//////link///////)
 - **Explanation Video:** [Watch here](//////link///////)
 - **Web Build:** [Play here](https://play.unity.com/en/games/6ed1e4dd-d56d-4158-ab25-c30ffd468108/build)
