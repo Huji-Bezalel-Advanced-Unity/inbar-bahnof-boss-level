@@ -61,5 +61,5 @@ The boss's movements and attacks become more aggressive as the battle progresses
 - **Indicators:** Lives, water level, and energy status to monitor resources during the battle.
 - **Visual Cues:** Indicators for incoming attacks from the boss.
 
-## Art
+### Art
 - **Assets:** Flowers, plants, water sources/drops, sunlight, garden tools, poison, and the human hand.
