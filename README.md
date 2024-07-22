@@ -5,6 +5,11 @@
 - **Explanation Video:** [Watch here](//////link///////)
 - **Web Build:** [Play here](//////link///////)
 
+## Instructions - Joystick
+- **Shoot:** Press the X button to shoot.
+- **Escape Boss:** If the boss touches you, poke it with the O button.
+- **Energy:** Collect sun to have energy to run from it.
+
 ### Planning
 ![Planning Image](//////link///////)
 
