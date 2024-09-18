@@ -2,7 +2,6 @@
 
 ## Links
 - **Gameplay Video:** [Watch here](https://youtu.be/2r3eoVXcOAc)
-- **Code Review Video:** [Watch here](https://youtu.be/VDvSbgktuuA)
 - **Web Build:** [Play here](https://play.unity.com/en/games/6ed1e4dd-d56d-4158-ab25-c30ffd468108/build)
 
 ## Instructions - Joystick
